@@ -4,6 +4,8 @@
  */
 package fairwaydpbo;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author ASUS
@@ -15,6 +17,10 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        setTitle("Dashboard");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // Tampilkan di tengah layar
     }
 
     /**

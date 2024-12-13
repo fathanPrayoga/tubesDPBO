@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package fairwaydpbo;
+import method.UserMethod;
+import fairwaydpbo.Dashboard;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,8 +35,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jUsername = new javax.swing.JTextField();
-        jPass = new javax.swing.JTextField();
         jOk = new javax.swing.JButton();
+        jPass = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -82,6 +86,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPassActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Company");
         jMenuBar1.add(jMenu1);
 
@@ -96,21 +106,20 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(jUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(jOk)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(138, 138, 138)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(157, 157, 157)
+                            .addComponent(jUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(335, 335, 335)
+                            .addComponent(jOk))))
                 .addContainerGap(173, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,8 +147,38 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jUsernameActionPerformed
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        // TODO add your handling code here:
+        String email = jUsername.getText();   
+        String password = new String(jPass.getPassword());
+        
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email harus diisi!");
+            jUsername.requestFocus();
+            return;
+        }
+        if (password.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Password harus diisi!");
+            jPass.requestFocus();
+            return;
+        }
+        UserMethod userMethod = new UserMethod();
+        try{
+            boolean isLoggedIn = userMethod.login(email, password);
+            if (isLoggedIn){
+                JOptionPane.showMessageDialog(this, "Login berhasil!");
+                new Dashboard().setVisible(true); // Pindah ke halaman dashboard
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Email atau password salah.");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+        }
     }//GEN-LAST:event_jOkActionPerformed
+
+    private void jPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,7 +225,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton jOk;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jPass;
+    private javax.swing.JPasswordField jPass;
     private javax.swing.JTextField jUsername;
     // End of variables declaration//GEN-END:variables
 }

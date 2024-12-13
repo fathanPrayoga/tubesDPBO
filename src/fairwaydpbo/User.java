@@ -179,6 +179,9 @@ public class User extends javax.swing.JFrame {
         try {
             userMethod.register(nama, email, password, telpon);
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan.");
+            
+            new Login().setVisible(true);
+            this.dispose();
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage());
