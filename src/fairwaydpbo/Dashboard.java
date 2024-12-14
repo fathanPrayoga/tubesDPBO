@@ -34,6 +34,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jGoToSearch = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -69,6 +70,13 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        jGoToSearch.setText("Search a job");
+        jGoToSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGoToSearchActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("User");
 
@@ -124,12 +132,18 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1208, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(jGoToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 565, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE)
+                .addComponent(jGoToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
 
         pack();
@@ -150,6 +164,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jGoToSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGoToSearchActionPerformed
+        new SearchJob().setVisible(true);
+    }//GEN-LAST:event_jGoToSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +205,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jGoToSearch;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
